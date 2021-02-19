@@ -5,13 +5,18 @@ const create=(c)=>document.createElement(c)
 let city =localStorage.getItem('city')
 city=city.charAt(0).toUpperCase()+city.slice(1)
 let title = document.querySelector('title')
-title.innerHTML=`${city} City - Weather Updates.`
 const baseurl='http://openweathermap.org/img/wn/'
 const getdata=()=>{
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=0b1071bcbc452212017f7420dad7bba7`).then
     (data=>
     data.json()).then(res=>{
     const data = res.list
+    if(data==undefined){alert('Invalid City');
+    title.innerHTML='Invalid-City'
+    window.location.replace('https://forecast-five.vercel.app/');
+    }
+    else{
+    title.innerHTML=`${city} City - Weather Updates.`
     const today =data[0]
     const {main,weather,wind}=today
     const {temp_min,temp_max,humidity}=main
@@ -113,6 +118,7 @@ const getdata=()=>{
         humid.innerHTML=`Humidity will be ${humidity}🌢`
         divsub.append(humid)
     })
+    }
     }
     )
 }
