@@ -60,6 +60,7 @@ const clickMe =()=>{
         imags.style.margin='auto'
         btn.style.color='white'
     }
+    imags.style.transition='all 2s ease-in-out'
     bdy.style.transition='all 2s ease-in-out'
 }
 checker.addEventListener('click',clickMe)
