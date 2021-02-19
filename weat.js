@@ -1,4 +1,13 @@
 let input,btn,bdy=document.body
+let moded=document.querySelector('input')
+bdy.style.transition='all 1s ease-out'
+moded.addEventListener('click',()=>{
+    let mode=moded.checked
+    const background=mode?'black':'#FB6612' 
+    const color=mode?'white':'black'
+    bdy.style.background=background
+    bdy.style.color=color
+})
 bdy.style.fontFamily='Lato'
 const add=(c)=>bdy.append(c)
 const create=(c)=>document.createElement(c)
@@ -38,6 +47,7 @@ const getdata=()=>{
     div.style.padding='1% 2%'
     div.style.background='white'
     div.style.border='1px solid grey'
+    div.style.color='black'
     add(div)
     const image = create('img')
     image.src=`${baseurl}${weate.icon}@2x.png`
@@ -69,11 +79,13 @@ const getdata=()=>{
     const h13 = create('h1')
     h13.innerHTML='Upcoming Days'
     h13.style.textAlign='center'
+    
     add(h13)
     const otherdiv = create('div')
     otherdiv.style.display='flex'
     otherdiv.style.flexWrap='wrap'
     otherdiv.style.marginLeft='7%'
+    otherdiv.style.color='black'
     add(otherdiv)
     orgdata.map(i=>{
         const {main,weather,wind} = i
