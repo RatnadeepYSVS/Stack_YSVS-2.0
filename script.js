@@ -34,34 +34,61 @@ btn.style.color='white'
 btn.style.textDecoration='none'
 btn.style.transition='all 2s ease-in-out'
 add(btn)
-localStorage.setItem('mode',checker.checked)
 const setCity=()=>{
     localStorage.setItem('city',input.value)
 }
+let imags=document.querySelector('img')
 const clickMe =()=>{
     const mode= localStorage.getItem('mode')
     const color=checker.checked?'black':'#FB6612'
     const back=!checker.checked?'black':'white'
-    btn.style.backgroundColor=back
     bdy.style.background=color
     bdy.style.color=back
+    localStorage.setItem('mode','OFF')
     const imags=document.querySelector('img')
     if(checker.checked){
         imags.src='https://www.wmcactionnews5.com/pb/resources/images/weather/weather-condition-icons/400x400/102_daily_forecast.png'
         imags.style.width='25%'
         imags.style.display='block'
         imags.style.margin='auto'
+        btn.style.backgroundColor='white'
         btn.style.color=color
+        localStorage.setItem('mode','ON')
     }
     else{
         imags.src='https://icons-for-free.com/iconfiles/png/512/fog+foggy+weather+icon-1320196634851598977.png'
         imags.style.width='25%'
         imags.style.display='block'
         imags.style.margin='auto'
+        btn.style.backgroundColor='black'
         btn.style.color='white'
+        localStorage.setItem('mode','OFF')
     }
+    console.log(localStorage.getItem('mode'))
     imags.style.transition='all 2s ease-in-out'
     bdy.style.transition='all 2s ease-in-out'
+}
+if(localStorage.getItem('mode')=="ON"){
+    checker.checked=true
+    bdy.style.background='black'
+    bdy.style.color='white'
+    imags.src='https://www.wmcactionnews5.com/pb/resources/images/weather/weather-condition-icons/400x400/102_daily_forecast.png'
+    imags.style.width='25%'
+    imags.style.display='block'
+    imags.style.margin='auto'
+    btn.style.backgroundColor='white'
+    btn.style.color='black'
+}
+else{
+    checker.checked=false
+    bdy.style.background='#FB6612'
+    bdy.style.color='black'
+    imags.src='https://icons-for-free.com/iconfiles/png/512/fog+foggy+weather+icon-1320196634851598977.png'
+    imags.style.width='25%'
+    imags.style.display='block'
+    imags.style.margin='auto'
+    btn.style.backgroundColor='black'
+    btn.style.color='white'
 }
 checker.addEventListener('click',clickMe)
 btn.addEventListener('click',setCity)
