@@ -1,13 +1,19 @@
+const mode = localStorage.getItem('mode')
 let input,btn,bdy=document.body
 let moded=document.querySelector('input')
 bdy.style.transition='all 1s ease-out'
-moded.addEventListener('click',()=>{
-    let mode=moded.checked
-    const background=mode?'black':'#FB6612' 
-    const color=mode?'white':'black'
-    bdy.style.background=background
-    bdy.style.color=color
-})
+if(mode=="OFF"){
+        bdy.style.background='#FB6612'
+        bdy.style.color='black'
+        moded.checked=false
+        moded.disabled=true
+}
+else{
+    moded.checked=true
+    bdy.style.background='black'
+    bdy.style.color='white'
+    moded.disabled=true
+}
 bdy.style.fontFamily='Lato'
 const add=(c)=>bdy.append(c)
 const create=(c)=>document.createElement(c)
